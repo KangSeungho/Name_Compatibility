@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -27,14 +29,68 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        dataBinding true
+    }
 }
 
 dependencies {
+    implementation project(':domain')
+    implementation project(':data')
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    implementation (KTX.CORE)
+    implementation (AndroidX.APP_COMPAT)
+    implementation (Google.MATERIAL)
+    implementation (AndroidX.CONSTRAINT_LAYOUT)
+    implementation (AndroidX.LEGACY)
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.firebase:firebase-database-ktx:20.0.3'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.0.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation (AndroidTest.EXT_JUNIT)
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // dagger hilt
+    implementation (DaggerHilt.DAGGER_HILT)
+    kapt (DaggerHilt.DAGGER_HILT_COMPILER)
+    implementation (DaggerHilt.DAGGER_HILT_VIEW_MODEL)
+    kapt (DaggerHilt.DAGGER_HILT_ANDROIDX_COMPILER)
+
+    // ViewModel
+    implementation (AndroidX.LIFECYCLE_VIEW_MODEL)
+
+    // LiveData
+    implementation (AndroidX.LIFECYCLE_LIVEDATA)
+
+    // Retrofit
+    implementation (Retrofit.RETROFIT)
+    implementation (Retrofit.CONVERTER_GSON)
+    implementation (Retrofit.CONVERTER_JAXB)
+
+    //okHttp
+    implementation (OkHttp.OKHTTP)
+    implementation (OkHttp.LOGGING_INTERCEPTOR)
+
+    //coroutines
+    implementation (Coroutines.COROUTINES)
+
+    //by viewModel
+    implementation (AndroidX.ACTIVITY)
+    implementation (AndroidX.FRAGMENT)
+
+    //nav component
+    implementation (NavComponent.NAVIGATION_FRAGMENT)
+    implementation (NavComponent.NAVIGATION_UI)
+    implementation (NavComponent.NAVIGATION_DYNAMIC_FEATURES_FRAGMENT)
+    androidTestImplementation (NavComponent.NAVIGATION_TESTING)
+    implementation (NavComponent.NAVIGATION_COMPOSE)
+
+    //datastore
+    implementation (AndroidX.DATASTORE)
+
+    implementation "com.github.ParkSangSun1:NotificationBarCustom:1.0.3"
+    implementation "com.github.ParkSangSun1:CountNumberEvent:1.0.4"
 }
