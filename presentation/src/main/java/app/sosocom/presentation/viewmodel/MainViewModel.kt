@@ -24,6 +24,8 @@ class MainViewModel @Inject constructor(
     var apiCallResult = DomainLoveResponse("", "", 0, "")
     var apiErrorType = ErrorType.UNKNOWN
     var apiErrorMessage = "none"
+    var manNameResult = "man"
+    var womanNameResult = "woman"
 
     fun checkLoveCalculator(host: String, key: String, sName: String, fName: String) = viewModelScope.launch {
         checkLoveCalculatorUseCase.execute(this@MainViewModel, host, key, sName, fName).let { response ->
