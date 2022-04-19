@@ -24,6 +24,7 @@ object NetworkModule {
         .connectTimeout(10, TimeUnit.SECONDS)
         .writeTimeout(15, TimeUnit.SECONDS)
         .addInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY })
+        .build()
 
     @Provides
     @Singleton
