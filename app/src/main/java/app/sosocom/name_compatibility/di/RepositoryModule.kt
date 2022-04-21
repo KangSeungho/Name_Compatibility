@@ -1,8 +1,11 @@
 package app.sosocom.name_compatibility.di
 
 import app.sosocom.data.repository.MainRepositoryImpl
+import app.sosocom.data.repository.remote.SplashRepositoryImpl
 import app.sosocom.data.repository.remote.datasource.MainDataSource
+import app.sosocom.data.repository.remote.datasource.SplashDataSource
 import app.sosocom.domain.repository.MainRepository
+import app.sosocom.domain.repository.SplashRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,8 +21,14 @@ class RepositoryModule {
     fun provideMainRepository(
         mainDataSource: MainDataSource
     ) : MainRepository {
-        return MainRepositoryImpl(
-            mainDataSource
-        )
+        return MainRepositoryImpl(mainDataSource)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSplashRepository(
+        splashDataSource: SplashDataSource
+    ): SplashRepository {
+        return SplashRepositoryImpl(splashDataSource)
     }
 }

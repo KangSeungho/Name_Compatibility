@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -11,6 +12,9 @@ android {
     defaultConfig {
         minSdk 24
         targetSdk 31
+
+        buildConfigField "String", "VERSION_CODE", '\"' + "$rootProject.AppVersionCode" +'\"'
+        buildConfigField "String", "VERSION_NAME", '\"' + "$rootProject.AppVersionName" +'\"'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -49,6 +53,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx:24.0.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    implementation 'com.google.firebase:firebase-database:19.2.1'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation (AndroidTest.EXT_JUNIT)
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'

@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -12,8 +13,8 @@ android {
         applicationId "app.sosocom.name_compatibility"
         minSdk 24
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        versionCode rootProject.AppVersionCode
+        versionName rootProject.AppVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
