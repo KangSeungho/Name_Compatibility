@@ -21,6 +21,8 @@ class ResultFragment : BaseFragment<FragmentResultBinding>(R.layout.fragment_res
 
     override fun init() {
         binding.fragment = this
+
+        initResult()
     }
 
     private fun initResult() {
@@ -31,9 +33,31 @@ class ResultFragment : BaseFragment<FragmentResultBinding>(R.layout.fragment_res
             in 41..70 -> binding.message.text = "기대해도 좋겠는데요?"
             in 71..90 -> binding.message.text = "일단 축하드려요"
             in 91..99 -> binding.message.text = "와우.. 눈을 의심하고 있어요"
-            100 -> binding.message.text = "완벽하네요! 축하드려요~"
+            100 -> {
+                saveStatistics()
+                binding.message.text = "완벽하네요! 축하드려요~"
+            }
             else -> binding.message.text = "알수없는 힘?"
         }
+    }
+
+    private fun saveStatistics() {
+        mainViewModel.getStatistics()
+            .addOnSuccessListener {
+                it ?: return@addOnSuccessListener
+
+                mainViewModel.setStatistics(it.value.toString().toInt() + 1)
+                    .addOnFailureListener {
+                        showFailedSaveStatisticsToast()
+                    }
+            }
+            .addOnFailureListener {
+                showFailedSaveStatisticsToast()
+            }
+    }
+
+    private fun showFailedSaveStatisticsToast() {
+        shortShowToast("통계를 저장하는데 오류가 발생했습니다.")
     }
 
     fun nextBtnClick(view: View) {
