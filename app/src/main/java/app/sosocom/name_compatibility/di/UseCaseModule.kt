@@ -4,6 +4,8 @@ import app.sosocom.domain.repository.MainRepository
 import app.sosocom.domain.repository.SplashRepository
 import app.sosocom.domain.usecase.CheckAppVersionUseCase
 import app.sosocom.domain.usecase.CheckLoveCalculatorUseCase
+import app.sosocom.domain.usecase.GetStatisticsUseCase
+import app.sosocom.domain.usecase.SetStatisticsUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,4 +23,12 @@ class UseCaseModule {
     @Provides
     @Singleton
     fun provideCheckAppVersionUseCase(repository: SplashRepository) = CheckAppVersionUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetStatisticsUseCase(repository: MainRepository) = GetStatisticsUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideSetStatisticsUseCase(repository: MainRepository) = SetStatisticsUseCase(repository)
 }

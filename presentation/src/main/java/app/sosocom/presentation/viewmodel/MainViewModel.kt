@@ -25,6 +25,9 @@ class MainViewModel @Inject constructor(
     private val _apiCallEvent = SingleLiveEvent<ScreenState>()
     val apiCallEvent: LiveData<ScreenState> = _apiCallEvent
 
+    private val _getStatisticsEvent = SingleLiveEvent<Int>()
+    val getStatisticsEvent: LiveData<Int> = _getStatisticsEvent
+
     var apiCallResult = DomainLoveResponse("", "", 0, "")
     var apiErrorType = ErrorType.UNKNOWN
     var apiErrorMessage = "none"
@@ -46,6 +49,13 @@ class MainViewModel @Inject constructor(
     fun setStatistics(plusValue: Int) = setStatisticsUseCase.execute(plusValue)
 
     fun getStatistics() = getStatisticsUseCase.execute()
+
+    fun getStatisticsDisplay() {
+        getStatisticsUseCase.execute()
+            .addOnSuccessListener {
+                _getStatisticsEvent.postValue(it.value.toString().toInt())
+            }
+    }
 
     override fun onError(msg: String) {
         apiErrorMessage = msg
