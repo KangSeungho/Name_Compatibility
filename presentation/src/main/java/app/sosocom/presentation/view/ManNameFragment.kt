@@ -28,10 +28,11 @@ class ManNameFragment : BaseFragment<FragmentManNameBinding>(R.layout.fragment_m
 
     fun nextBtnClick(view: View) {
         binding.progressBar.visibility = View.VISIBLE
+        mainViewModel.manNameResult = binding.nameEditTxt.text.toString()
         mainViewModel.checkLoveCalculator(
             "love-calculator.p.rapidapi.com",
             "9862109fc9msha20552451b776e0p13f7efjsnd8f97f572226",
-            binding.nameEditTxt.text.toString(),
+            mainViewModel.manNameResult,
             mainViewModel.womanNameResult
         )
     }

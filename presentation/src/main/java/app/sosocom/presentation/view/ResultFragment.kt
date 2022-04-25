@@ -61,12 +61,6 @@ class ResultFragment : BaseFragment<FragmentResultBinding>(R.layout.fragment_res
     }
 
     fun nextBtnClick(view: View) {
-        mainViewModel.checkLoveCalculator(
-            "love-calculator.p.rapidapi.com",
-            "9862109fc9msha20552451b776e0p13f7efjsnd8f97f572226",
-            mainViewModel.manNameResult,
-            mainViewModel.womanNameResult
-        )
         findNavController().navigate(R.id.action_resultFragment_to_mainFragment)
     }
 }
