@@ -17,7 +17,6 @@ import javax.inject.Singleton
 class RepositoryModule {
 
     @Provides
-    @Singleton
     fun provideMainRepository(
         mainDataSource: MainDataSource
     ) : MainRepository {
@@ -25,7 +24,6 @@ class RepositoryModule {
     }
 
     @Provides
-    @Singleton
     fun provideSplashRepository(
         splashDataSource: SplashDataSource
     ): SplashRepository {

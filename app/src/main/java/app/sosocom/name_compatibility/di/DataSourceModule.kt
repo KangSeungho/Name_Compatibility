@@ -18,7 +18,6 @@ import javax.inject.Singleton
 class DataSourceModule {
 
     @Provides
-    @Singleton
     fun provideMainDataSource(
         loveCalculatorApi: LoveCalculatorApi,
         firebaseRTDB: FirebaseDatabase,
@@ -28,7 +27,6 @@ class DataSourceModule {
     }
 
     @Provides
-    @Singleton
     fun provideSplashDataSource(
         firebaseRTDB : FirebaseDatabase,
         fireStore: FirebaseFirestore
